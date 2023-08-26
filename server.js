@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 
 require("./app/config/dbconfig").getDbConnection();
-
+const FormdataController = require("./app/controller/FormdataController");
 const UserController = require("./app/controller/UserController");
 const app = express();
 
@@ -17,7 +17,8 @@ app.get("/", function (req, res) {
 });
 
 app.post("/signup", UserController.signup);
-app.get("/login", UserController.login);
+app.post("/login", UserController.login);
+app.post("/formdata", FormdataController.formdata);
 
 app.listen(9999);
 console.log("server started at 9999");
