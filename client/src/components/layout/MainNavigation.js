@@ -5,23 +5,17 @@ import classes from "./MainNavigation.module.css";
 const MainNavigation = () => {
   return (
     <header className={classes.header}>
-      <div className={classes.logo}>Health & Care</div>
+      <div className={classes.logo}>Great Quotes</div>
       <nav className={classes.nav}>
         <ul>
           <li>
-            <NavLink
-              to="/dashboard/pastdiseases"
-              activeClassName={classes.active}
-            >
-              Past Disease
+            <NavLink to="/quotes" activeClassName={classes.active}>
+              Past Diseases
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to="/dashboard/currentdiseases"
-              activeClassName={classes.active}
-            >
-              Current Disease
+            <NavLink to="/new-quote" activeClassName={classes.active}>
+              Current Diseases
             </NavLink>
           </li>
         </ul>
