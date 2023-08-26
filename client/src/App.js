@@ -11,34 +11,42 @@ import QuoteDetail from "./pages/QuoteDetail";
 import NewQuote from "./pages/NewQuote";
 function App() {
   return (
-    <Layout>
-      <Switch>
-        <Route path="/admin/login">
-          <Login></Login>
-        </Route>
-        <Route path="/admin/register">
-          <Register></Register>
-        </Route>
-        <Route path="/admin/fieldform">
-          <Fieldform></Fieldform>
-        </Route>
-        <Route path="/" exact>
+    <Switch>
+      <Route path="/admin/login">
+        <Login></Login>
+      </Route>
+      <Route path="/admin/register">
+        <Register></Register>
+      </Route>
+      <Route path="/admin/fieldform">
+        <Fieldform></Fieldform>
+      </Route>
+      <Route path="/" exact>
+        <Layout>
           <Redirect to="/quotes" />
-        </Route>
-        <Route path="/quotes" exact>
+        </Layout>
+      </Route>
+      <Route path="/quotes" exact>
+        <Layout>
           <AllQuotes />
-        </Route>
-        <Route path="/quotes/:quoteId">
+        </Layout>
+      </Route>
+      <Route path="/quotes/:quoteId">
+        <Layout>
           <QuoteDetail />
-        </Route>
-        <Route path="/new-quote">
+        </Layout>
+      </Route>
+      <Route path="/new-quote">
+        <Layout>
           <NewQuote />
-        </Route>
-        <Route path="*">
+        </Layout>
+      </Route>
+      <Route path="*">
+        <Layout>
           <NotFound />
-        </Route>
-      </Switch>
-    </Layout>
+        </Layout>
+      </Route>
+    </Switch>
   );
 }
 export default App;
