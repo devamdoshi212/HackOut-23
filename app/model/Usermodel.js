@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const RegisterSchema = new mongoose.Schema({
   name: {
@@ -20,4 +20,4 @@ const RegisterSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('Register', RegisterSchema);
+module.exports = mongoose.model("Register", RegisterSchema);

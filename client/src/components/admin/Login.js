@@ -3,13 +3,14 @@ import "./Login.css";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { useFormik } from "formik";
 import { loginSchema } from "../../schemas";
+import axios from "axios";
 
 const initialValues = {
   email: "",
   password: "",
 };
 
-const submitHandler = (e) => {
+const submitHandler = async (e) => {
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
@@ -27,9 +28,12 @@ const submitHandler = (e) => {
 
   fetch("http://localhost:9999/login", requestOptions)
     .then((response) => response.text())
-    .then((result) => console.log(result))
+    .then((result) => {
+      //open filled form
+    })
     .catch((error) => console.log("error", error));
 };
+
 const Login = (props) => {
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
