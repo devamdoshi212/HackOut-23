@@ -7,6 +7,7 @@ const FormdataController = require("./app/controller/FormdataController");
 const UserController = require("./app/controller/UserController");
 const LoginController = require("./app/controller/LoginController");
 const GetAllDiseaseController = require("./app/controller/GetallDiseaseController");
+const FormdataControllerById = require("./app/controller/FormDataByIdController");
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
@@ -19,6 +20,6 @@ app.post("/signup", UserController.signup);
 app.post("/login", LoginController.login);
 app.post("/formdata", FormdataController.formdata);
 app.get("/GetAllDisease", GetAllDiseaseController.GetAllDisease);
-
+app.get("/GetDiseaseById/:id", FormdataControllerById.GetDataById);
 app.listen(9999);
 console.log("server started at 9999");
