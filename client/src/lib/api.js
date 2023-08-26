@@ -28,19 +28,33 @@ export async function getAllQuotes() {
 }
 
 export async function getSingleQuote(quoteId) {
-  const response = await fetch(`${FIREBASE_DOMAIN}/quotes/${quoteId}.json`);
-  const data = await response.json();
+  // const response = await fetch(`${FIREBASE_DOMAIN}/quotes/${quoteId}.json`);
+  try {
+    var raw = "";
 
-  if (!response.ok) {
-    throw new Error(data.message || "Could not fetch quote.");
+    var requestOptions = {
+      method: "GET",
+      body: raw,
+      redirect: "follow",
+    };
+
+    const response = await fetch(
+      `http://localhost:9999/GetDiseaseById/${quoteId}`
+    );
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message || "Could not fetch quote.");
+    }
+
+    const loadedQuote = {
+      id: quoteId,
+      ...data,
+    };
+    console.log(loadedQuote);
+    return loadedQuote;
+  } catch (e) {
+    console.log(e);
   }
-
-  const loadedQuote = {
-    id: quoteId,
-    ...data,
-  };
-
-  return loadedQuote;
 }
 
 export async function addQuote(quoteData) {
