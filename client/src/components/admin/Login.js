@@ -3,38 +3,16 @@ import "./Login.css";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { useFormik } from "formik";
 import { loginSchema } from "../../schemas";
-import axios from "axios";
-
+import { useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
 const initialValues = {
   email: "",
   password: "",
 };
 
-const submitHandler = async (e) => {
-  var myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-
-  var raw = JSON.stringify({
-    email: e.email,
-    password: e.password,
-  });
-
-  var requestOptions = {
-    method: "POST",
-    headers: myHeaders,
-    body: raw,
-    redirect: "follow",
-  };
-
-  fetch("http://localhost:9999/login", requestOptions)
-    .then((response) => response.text())
-    .then((result) => {
-      //open filled form
-    })
-    .catch((error) => console.log("error", error));
-};
-
 const Login = (props) => {
+  const history = useHistory();
+  const [sumbiterror, setsumbiterror] = useState(false);
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
@@ -45,6 +23,36 @@ const Login = (props) => {
         action.resetForm();
       },
     });
+
+  const submitHandler = async (e) => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+      email: e.email,
+      password: e.password,
+    });
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("http://localhost:9999/login", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        const data = JSON.parse(result);
+        console.log(data);
+        if (data.rcode === 200) {
+          history.push("/admin/fieldform");
+        } else {
+          setsumbiterror(true);
+        }
+      })
+      .catch((error) => console.log("error", error));
+  };
 
   return (
     <div className="bodydiv">
@@ -107,6 +115,13 @@ const Login = (props) => {
                   <button class="btn btn-primary btn-block mt-4 w-100">
                     Login
                   </button>
+                  <div className="text-center ">
+                    {sumbiterror ? (
+                      <p className="text-danger">Register failed!!</p>
+                    ) : (
+                      ""
+                    )}
+                  </div>
                   <div class="text-center pt-4 text-muted fw-normal">
                     Don't have an account?{" "}
                     <Link to="/admin/register">Sign up</Link>
