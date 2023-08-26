@@ -1,14 +1,12 @@
 import { Fragment, useEffect } from "react";
-import { useParams, Route, Link, useRouteMatch } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
-import Comments from "../components/comments/Comments";
 import useHttp from "../hooks/use-http";
 import { getSingleQuote } from "../lib/api";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 
 const QuoteDetail = () => {
-  const match = useRouteMatch();
   const params = useParams();
 
   const { quoteId } = params;
@@ -24,7 +22,7 @@ const QuoteDetail = () => {
     sendRequest(quoteId);
   }, [sendRequest, quoteId]);
 
-  // console.log(loadedQuote);
+  console.log(loadedQuote);
   if (status === "pending") {
     return (
       <div className="centered">
@@ -44,19 +42,14 @@ const QuoteDetail = () => {
   return (
     <Fragment>
       <HighlightedQuote
-        text={loadedQuote.data.diseasename}
-        author={loadedQuote.data.description}
+        diseasename={loadedQuote.data.diseasename}
+        description={loadedQuote.data.description}
+        symptoms={loadedQuote.data.symptoms}
+        remedies={loadedQuote.data.remedies}
+        precaution={loadedQuote.data.precaution}
+        emergency_contact={loadedQuote.data.emergency_contact}
+        general_contact={loadedQuote.data.general_contact}
       />
-      <Route path={match.path} exact>
-        <div className="centered">
-          <Link className="btn--flat" to={`${match.url}/comments`}>
-            Load Comments
-          </Link>
-        </div>
-      </Route>
-      <Route path={`${match.path}/comments`}>
-        <Comments />
-      </Route>
     </Fragment>
   );
 };
