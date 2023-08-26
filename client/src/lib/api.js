@@ -6,6 +6,7 @@ export async function getAllQuotes() {
   try {
     const data = await response.json();
     const result = data.data;
+    // console.log(result._id);
     if (!response.ok) {
       throw new Error(data.message || "Could not fetch quotes.");
     }
@@ -14,10 +15,9 @@ export async function getAllQuotes() {
 
     for (const key in result) {
       const quoteObj = {
-        id: key,
+        id: result[key]._id,
         ...result[key],
       };
-
       transformedQuotes.push(quoteObj);
     }
     console.log(transformedQuotes);
