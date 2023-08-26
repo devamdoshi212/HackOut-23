@@ -3,6 +3,8 @@ import { Redirect, Switch } from "react-router-dom/cjs/react-router-dom";
 import MainNavigation from "./components/MainNavigation";
 import Dashboard from "./components/Dashboard";
 import "./App.css";
+import Login from "./components/admin/Login";
+import Register from "./components/admin/Register";
 
 function App() {
   return (
@@ -19,8 +21,12 @@ function App() {
       <Route path="/dashboard/pastdiseases">
         <Dashboard></Dashboard>
       </Route>
-      <Route path="/admin"></Route>
-      <MainNavigation></MainNavigation>
+      <Route path="/admin/login" exact>
+        <Login></Login>
+      </Route>
+      <Route path="/admin/register" exact>
+        <Register></Register>
+      </Route>
     </Switch>
   );
 }
