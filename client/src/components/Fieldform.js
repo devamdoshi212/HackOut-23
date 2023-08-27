@@ -13,12 +13,42 @@ const initialValues = {
   contact_number: "",
 };
 const Fieldform = () => {
+  const submitHandler = (e) => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    var raw = JSON.stringify({
+      "diseasename":  e.diseaseName,
+      "description": e.description,
+      "symptoms": e.symptoms,
+      "remedies": e.remedies,
+      "precaution": e.precaution,
+      "visualcontent": e.visual_content,
+      "emergency_contact": e.emergency,
+      "general_contact": e.contact_number
+    });
+    
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+    
+    fetch("http://localhost:9999/formdata", requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+  }
+
+
+
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
       validationSchema: formSchema,
       onSubmit: (values, action) => {
-        // submitHandler(values);
+        submitHandler(values);
         console.log(values);
         action.resetForm();
       },

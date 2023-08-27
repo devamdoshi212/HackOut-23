@@ -46,7 +46,7 @@ const Login = (props) => {
         const data = JSON.parse(result);
         console.log(data);
         if (data.rcode === 200) {
-          history.push("/admin/fieldform");
+          history.replace("/admin/fieldform");
         } else {
           setsumbiterror(true);
         }
