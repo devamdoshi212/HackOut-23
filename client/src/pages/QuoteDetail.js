@@ -49,6 +49,7 @@ const QuoteDetail = () => {
         precaution={loadedQuote.data.precaution}
         emergency_contact={loadedQuote.data.emergency_contact}
         general_contact={loadedQuote.data.general_contact}
+        visualcontent={loadedQuote.data.visualcontent}
       />
     </Fragment>
   );
