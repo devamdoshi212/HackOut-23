@@ -2,7 +2,7 @@
   /* background-color: red; */
   /* border: 2px solid red; */
   /* text-align: center; */
-  width: 90%;
+  width: 100%;
   align-items: center;
   margin: auto;
 
@@ -21,7 +21,7 @@
   color: black;
   border-radius: 6px;
   padding: 3rem;
-  margin: 3rem auto;
+  margin: 2rem auto;
   width: 100%;
   height: auto;
   border: 2px solid rgb(1, 51, 51);
@@ -37,7 +37,7 @@
 }
 
 .quote p {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .quote figcaption {

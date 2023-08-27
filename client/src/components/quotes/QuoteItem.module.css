@@ -35,3 +35,22 @@
   font-style: italic;
   color: #566d6d;
 }
+
+.btn {
+  /* background-color: red; */
+  text-decoration: none;
+  background-color: teal;
+  color: white;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid teal;
+  cursor: pointer;
+}
+
+.btn:hover,
+.btn:active {
+  background-color: #11acac;
+  border-color: #11acac;
+  color: white;
+  font-weight: 500;
+}
