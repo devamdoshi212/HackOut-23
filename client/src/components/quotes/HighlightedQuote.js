@@ -2,14 +2,14 @@ import classes from "./HighlightedQuote.module.css";
 import DetailQuoteNavbar from "./DetailQuoteNavbar";
 import ReactPlayer from "react-player";
 const HighlightedQuote = (props) => {
+  const scrolltosection = (id) => {
+    const section = document.getElementById(id);
+    section.scrollIntoView({ behavior: "smooth" });
+  };
   return (
-    // <figure className={classes.quote}>
-    //   <p>{props.diseasename}</p>
-    //   <figcaption>{props.description}</figcaption>
-    // </figure>
     <>
       <div className={classes.navbar}>
-        <DetailQuoteNavbar></DetailQuoteNavbar>
+        <DetailQuoteNavbar id={scrolltosection}></DetailQuoteNavbar>
       </div>
       <div className={classes.container}>
         <h1 id={classes.title}>{props.diseasename}</h1>
@@ -30,7 +30,7 @@ const HighlightedQuote = (props) => {
           <h1>Precaution</h1>
           <p>{props.precaution}</p>
         </div>
-        <div className={classes.quote} id="precaution">
+        <div className={classes.quote} id="visualcontent">
           <h1>Visual Content</h1>
           <div>
             <ReactPlayer url={props.visualcontent} />

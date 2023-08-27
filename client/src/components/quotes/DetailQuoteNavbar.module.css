@@ -5,7 +5,7 @@
     padding: 0 10%;
     justify-content: space-between;
     align-items: center;
-    background-color: #005e63;
+    background-color: #61c8cd;
   }
   
   .logo {
@@ -21,7 +21,7 @@
   }
   
   .nav li {
-    margin-left: 13rem;
+    margin-left: 12.4rem;
     font-size: 1.50rem;
   }
   
@@ -35,4 +35,22 @@
   .nav a.active {
     color: #e6fcfc;
   }
+
+  .btn {
+    /* background-color: red; */
+    text-decoration: none;
+    background-color: #61c8cd;
+    color: white;
+    border-radius: 3px;
+    padding: 0.3rem 1rem;
+    border: 1px solid #61c8cd;
+    cursor: pointer;
+  }
   
+  .btn:hover,
+  .btn:active {
+    background-color: #11acac;
+    border-color: #11acac;
+    color: white;
+    font-weight: 500;
+  }
